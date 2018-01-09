@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataserviceProvider } from './../../providers/dataservice/dataservice';
-
+import { IntentProvider } from './../../providers/intent/intent';
+import { BootcontinerComponent } from './../../components/bootcontiner/bootcontiner';
 
 /**
  * Generated class for the UseinputComponent component.
@@ -15,14 +16,14 @@ import { DataserviceProvider } from './../../providers/dataservice/dataservice';
 export class UseinputComponent {
   input = {};
   apikey: string;
-
-  constructor( private dataserviceProvider : DataserviceProvider ) {
-   
+  a: any;
+  constructor(private dataserviceProvider: DataserviceProvider,private intentProvider: IntentProvider,private boot: BootcontinerComponent) {
   }
-  sendinput()
-  {
- let test=   this.dataserviceProvider.getwit()
-   console.log(test);
-    
+  sendinput() {
+    this.dataserviceProvider.getwit(this.input).then(data => {
+      this.a = data;
+let msg=this.intentProvider.getintent(this.a);
+this.boot.addcomponent(msg);
+    });
   }
 }

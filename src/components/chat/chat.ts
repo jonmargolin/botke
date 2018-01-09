@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , Input} from '@angular/core';
 import { GetimeProvider } from './../../providers/getime/getime';
 /**
  * Generated class for the ChatComponent component.
@@ -11,13 +11,11 @@ import { GetimeProvider } from './../../providers/getime/getime';
   templateUrl: 'chat.html'
 })
 export class ChatComponent {
-
-  text: string;
+  @Input() text:any;
 greting:string;
   constructor(private gettime:GetimeProvider) {
-    console.log('Hello ChatComponent Component');
-    this.text = 'Hello World';
-    this.greting=gettime.settime();      
+    this.greting=gettime.settime();
+this.text=this.greting+"? מה שלומך"      
   }
 
 

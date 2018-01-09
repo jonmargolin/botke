@@ -15,12 +15,12 @@ export class DataserviceProvider {
   constructor(public http: HttpClient) {
     console.log('Hello RestServiceProvider Provider');
   }
-  getwit()
+  getwit( input)
   {
+    console.log(input.title);
     return new Promise(resolve => {
-    this.http.get('https://api.wit.ai/message?q=מבחן',{
+    this.http.get('https://api.wit.ai/message?q='+input.title,{
       params: new HttpParams().set('access_token','OLOZJWSUHECG3KKUQQZQ45DJ2WJ6L36L')
- 
     }).subscribe(data => {
       resolve(data);
     }, err => {
