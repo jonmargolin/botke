@@ -16,16 +16,16 @@ export class GetimeProvider {
   settime() {
     let time= new Date();
     let ct=time.getHours();
-    if (ct<12)
+    if (ct>12)
       {
         return "בוקר טוב";
       }
 
-      else if(ct>12 && ct<18)
+      else if(ct>=12&&ct<18)
         {
           return "צהורים טובים";
         }
-        else if(ct>18)
+        else if(ct>=18)
           {
             return "ערב טוב";
           }

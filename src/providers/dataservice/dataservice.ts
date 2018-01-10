@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
-//import {Http,Headers,RequestOptions} from '@angular/http';
+
 import 'rxjs/add/operator/map';
 /*
   Generated class for the DataserviceProvider provider.
@@ -27,13 +27,17 @@ export class DataserviceProvider {
       console.log(err);
     });
   });
-    
-/*
-  let headers = new Headers({ 'access_token':'OLOZJWSUHECG3KKUQQZQ45DJ2WJ6L36L' });
-    const options = new RequestOptions({headers: headers});
-
-    return this.http.get('https://api.wit.ai/message?v=20160207?q=מבחן',options)
- //  return this.http.get('http://localhost/witboot/wit_config')
-    .map(res => res.json());*/
+  }
+  getlogin(user)
+  {
+    return new Promise(resolve => {
+    this.http.get('http://localhost:63130/api/users/?password='+user.password,{
+      params: new HttpParams().set('name',user.name)
+    }).subscribe(data => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    });
+  });
   }
 }
